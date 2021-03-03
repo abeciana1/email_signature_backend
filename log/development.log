@@ -35,3 +35,79 @@ Migrating to AddImageAddressFieldToUsers (20210214224920)
   [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7626777712370958540)[0m
   [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7626777712370958540)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RenameColumnUserPassword (20210215213449)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.7ms)[0m  [1m[35mALTER TABLE "users" RENAME COLUMN "password" TO "password_digest"[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210215213449"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7626777712370958540)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (5.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "alexb@test.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "job_title", "department", "company_name", "office_phone", "mobile_phone", "website_url", "email", "address_1", "address_2", "address_3", "address_4", "linkedin", "twitter", "github", "bonus_field", "created_at", "updated_at", "password_digest", "profile_image") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) RETURNING "id"[0m  [["first_name", "Alex"], ["last_name", "Beciana"], ["job_title", "Founder, CEO"], ["department", "Founder"], ["company_name", "Sweet Static"], ["office_phone", "(123) 456-7890"], ["mobile_phone", "(123) 456-7890"], ["website_url", "https://www.alexbeciana.com/"], ["email", "alexb@test.com"], ["address_1", "123 Fake Street"], ["address_2", "Suite 000"], ["address_3", "New York, NY 10001"], ["address_4", "United States of America"], ["linkedin", "https://www.linkedin.com/in/alexbeciana1/"], ["twitter", "https://twitter.com/"], ["github", "https://github.com/abeciana1/"], ["bonus_field", "What we've got here is failure to communicate."], ["created_at", "2021-02-15 22:29:50.559944"], ["updated_at", "2021-02-15 22:29:50.559944"], ["password_digest", "$2a$12$8TluF7ID/gI9acOFc/Y3MupBKaJ3St5zoCQMQKeI2dATF0xkkJn.G"], ["profile_image", "https://www.alexbeciana.com/static/profile-pic-942ff21fde4f338dc11fe09b617b1130.png"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "layne@carter-prosacco.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "job_title", "department", "company_name", "office_phone", "mobile_phone", "website_url", "email", "address_1", "address_2", "address_3", "linkedin", "twitter", "github", "bonus_field", "created_at", "updated_at", "password_digest", "profile_image") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING "id"[0m  [["first_name", "Brunilda"], ["last_name", "Wilderman"], ["job_title", "Future Associate"], ["department", "Technology"], ["company_name", "Wisoky-Volkman"], ["office_phone", "(332) 245-4996"], ["mobile_phone", "1-377-313-1049"], ["website_url", "https://www.google.com"], ["email", "layne@carter-prosacco.org"], ["address_1", "28781 Maynard Bypass"], ["address_2", "Suite 901"], ["address_3", "Grahamport, Texas 75106"], ["linkedin", "https://www.linkedin.com/feed/"], ["twitter", "https://twitter.com/"], ["github", "http://github.com/"], ["bonus_field", "I love the smell of napalm in the morning."], ["created_at", "2021-02-15 22:29:50.827318"], ["updated_at", "2021-02-15 22:29:50.827318"], ["password_digest", "$2a$12$ImO4.xJZLQtcGDuOCmcP8.t32jLjsv9glfZHarUAORGeaVXpzMD5u"], ["profile_image", "https://loremflickr.com/300/300"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "gerald@mertz.name"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "job_title", "department", "company_name", "office_phone", "mobile_phone", "website_url", "email", "address_1", "address_2", "address_3", "linkedin", "twitter", "github", "bonus_field", "created_at", "updated_at", "password_digest", "profile_image") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING "id"[0m  [["first_name", "Garth"], ["last_name", "Ondricka"], ["job_title", "Banking Specialist"], ["department", "Design"], ["company_name", "Muller and Sons"], ["office_phone", "309-670-9395"], ["mobile_phone", "411-708-7912"], ["website_url", "https://www.google.com"], ["email", "gerald@mertz.name"], ["address_1", "29008 Monique Mills"], ["address_2", "Apt. 328"], ["address_3", "Rasheedaview, Colorado 03464"], ["linkedin", "https://www.linkedin.com/feed/"], ["twitter", "https://twitter.com/"], ["github", "http://github.com/"], ["bonus_field", "What we've got here is failure to communicate."], ["created_at", "2021-02-15 22:29:51.085610"], ["updated_at", "2021-02-15 22:29:51.085610"], ["password_digest", "$2a$12$tEPzQDMtlH01M6kjFDD/XOVRceuZ6M/i93LDVh5NOI9GtXPi9joAS"], ["profile_image", "https://loremflickr.com/300/300"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dorris_lindgren@feil.net"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "job_title", "department", "company_name", "office_phone", "mobile_phone", "website_url", "email", "address_1", "address_2", "address_3", "linkedin", "twitter", "github", "bonus_field", "created_at", "updated_at", "password_digest", "profile_image") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING "id"[0m  [["first_name", "Sonya"], ["last_name", "Schneider"], ["job_title", "Consulting Officer"], ["department", "Administration"], ["company_name", "Jones and Sons"], ["office_phone", "421-268-1874"], ["mobile_phone", "313-361-3408"], ["website_url", "https://www.google.com"], ["email", "dorris_lindgren@feil.net"], ["address_1", "186 Schaden Shores"], ["address_2", "Apt. 224"], ["address_3", "Port Deedee, Hawaii 28727"], ["linkedin", "https://www.linkedin.com/feed/"], ["twitter", "https://twitter.com/"], ["github", "http://github.com/"], ["bonus_field", "Here's looking at you, kid."], ["created_at", "2021-02-15 22:29:51.342576"], ["updated_at", "2021-02-15 22:29:51.342576"], ["password_digest", "$2a$12$kHGG9jH/7tkBH9.Ohyo06eRzTgGa2xN8OP.1IIYBihr8pPhO/GN/a"], ["profile_image", "https://loremflickr.com/300/300"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "patricia@mayer-bechtelar.biz"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "job_title", "department", "company_name", "office_phone", "mobile_phone", "website_url", "email", "address_1", "address_2", "address_3", "linkedin", "twitter", "github", "bonus_field", "created_at", "updated_at", "password_digest", "profile_image") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING "id"[0m  [["first_name", "Ronald"], ["last_name", "Nienow"], ["job_title", "Internal Construction Strategist"], ["department", "Technology"], ["company_name", "Stroman, West and Legros"], ["office_phone", "(583) 721-4957"], ["mobile_phone", "1-477-631-9232"], ["website_url", "https://www.google.com"], ["email", "patricia@mayer-bechtelar.biz"], ["address_1", "27902 Ira Fall"], ["address_2", "Suite 585"], ["address_3", "Dickifurt, Louisiana 40209"], ["linkedin", "https://www.linkedin.com/feed/"], ["twitter", "https://twitter.com/"], ["github", "http://github.com/"], ["bonus_field", "I'm going to make him an offer he can't refuse."], ["created_at", "2021-02-15 22:29:51.596496"], ["updated_at", "2021-02-15 22:29:51.596496"], ["password_digest", "$2a$12$UBx28sG2Bg1BwjUimalM4Owdg9oqnBQKjogOb52jFJJJF1Tl5X4Sy"], ["profile_image", "https://loremflickr.com/300/300"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "victor_ernser@mcclure-kuphal.io"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "job_title", "department", "company_name", "office_phone", "mobile_phone", "website_url", "email", "address_1", "address_2", "address_3", "linkedin", "twitter", "github", "bonus_field", "created_at", "updated_at", "password_digest", "profile_image") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING "id"[0m  [["first_name", "Alden"], ["last_name", "Beatty"], ["job_title", "International Director"], ["department", "Administration"], ["company_name", "Jacobi LLC"], ["office_phone", "(749) 424-0747"], ["mobile_phone", "1-438-114-6505"], ["website_url", "https://www.google.com"], ["email", "victor_ernser@mcclure-kuphal.io"], ["address_1", "4792 Cassin Coves"], ["address_2", "Suite 502"], ["address_3", "New Summerberg, Minnesota 46018"], ["linkedin", "https://www.linkedin.com/feed/"], ["twitter", "https://twitter.com/"], ["github", "http://github.com/"], ["bonus_field", "May the Force be with you."], ["created_at", "2021-02-15 22:29:51.865681"], ["updated_at", "2021-02-15 22:29:51.865681"], ["password_digest", "$2a$12$FSUfs66tcOvrs7bGnE5gLeG6TlcTu0r1d.cNeyYfwI2PwBzpl85b6"], ["profile_image", "https://loremflickr.com/300/300"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2021-03-01 18:13:32 -0500
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/alexbeciana/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/alexbeciana/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.5/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.3ms | Allocations: 480)
+Completed 200 OK in 26ms (Views: 18.2ms | ActiveRecord: 0.0ms | Allocations: 2632)
+
+
+Started GET "/api/v1/users" for ::1 at 2021-03-01 18:13:57 -0500
+Processing by Api::V1::UsersController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 3.8ms | ActiveRecord: 0.0ms | Allocations: 794)
+
+
+Started GET "/api/v1/users" for ::1 at 2021-03-02 13:17:22 -0500
+Processing by Api::V1::UsersController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.69ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 39ms (Views: 21.9ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/api/v1/users" for ::1 at 2021-03-02 13:17:23 -0500
+Processing by Api::V1::UsersController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.57ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 215)
+
+
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7626777712370958540)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddDefaultValuesToAddressFields (20210303185546)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.4ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "address_1" TYPE character varying, ALTER COLUMN "address_1" SET DEFAULT ''[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "address_2" TYPE character varying, ALTER COLUMN "address_2" SET DEFAULT ''[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210303185546"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (5.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7626777712370958540)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

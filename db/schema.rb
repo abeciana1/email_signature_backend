@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_14_224920) do
+ActiveRecord::Schema.define(version: 2021_03_03_185546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2021_02_14_224920) do
     t.string "mobile_phone", default: ""
     t.string "website_url", default: ""
     t.string "email"
-    t.string "address_1"
-    t.string "address_2"
+    t.string "address_1", default: ""
+    t.string "address_2", default: ""
     t.string "address_3", default: ""
     t.string "address_4", default: ""
     t.string "linkedin", default: ""
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_224920) do
     t.string "bonus_field", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password"
+    t.string "password_digest"
     t.string "profile_image", default: ""
   end
 
