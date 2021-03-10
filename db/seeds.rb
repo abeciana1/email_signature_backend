@@ -8,7 +8,7 @@
 require 'pry'
 
 puts "destroy all"
-User.destroy_all
+# User.destroy_all
 
 puts "creating alex"
 alex = User.create(first_name: 'Alex', last_name: 'Beciana', job_title: "Founder, CEO", department: "Founder", company_name: "Sweet Static", office_phone: "(123) 456-7890", mobile_phone: "(123) 456-7890", website_url: "https://www.alexbeciana.com/", email: "alexb@test.com", address_1: "123 Fake Street", address_2: "Suite 000", address_3: "New York, NY 10001", address_4: "United States of America", linkedin: "https://www.linkedin.com/in/alexbeciana1/", github: "https://github.com/abeciana1/", twitter: "https://twitter.com/", bonus_field: Faker::Movie.quote, password: "1234", profile_image: "https://www.alexbeciana.com/static/profile-pic-942ff21fde4f338dc11fe09b617b1130.png")
