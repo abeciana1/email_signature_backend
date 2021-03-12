@@ -1363,3 +1363,69 @@ Processing by Api::V1::AuthController#create as JSON
 Completed 202 Accepted in 374ms (Views: 15.6ms | ActiveRecord: 82.5ms | Allocations: 20657)
 
 
+Started GET "/api/v1/session-renew" for ::1 at 2021-03-11 16:23:48 -0500
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::UsersController#session_renew as */*
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 607)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/api/v1/users_controller.rb:23:in `session_renew'
+Started POST "/api/v1/login" for ::1 at 2021-03-11 16:26:42 -0500
+Processing by Api::V1::AuthController#create as JSON
+  Parameters: {"user"=>{"email"=>"alexb@test.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"alexb@test.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "alexb@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:7:in `create'
+Completed 500 Internal Server Error in 59ms (ActiveRecord: 29.1ms | Allocations: 17621)
+
+
+  
+NoMethodError (undefined method `authenticate' for nil:NilClass):
+  
+app/controllers/api/v1/auth_controller.rb:8:in `create'
+Started POST "/api/v1/login" for ::1 at 2021-03-11 16:27:54 -0500
+Processing by Api::V1::AuthController#create as JSON
+  Parameters: {"user"=>{"email"=>"alexb@test.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"alexb@test.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "alexb@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:7:in `create'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 13.1ms | Allocations: 16243)
+
+
+  
+NoMethodError (undefined method `authenticate' for nil:NilClass):
+  
+app/controllers/api/v1/auth_controller.rb:8:in `create'
+Started GET "/api/v1/session-renew" for ::1 at 2021-03-11 16:28:52 -0500
+Processing by Api::V1::UsersController#session_renew as */*
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 564)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/api/v1/users_controller.rb:23:in `session_renew'
+Started POST "/api/v1/login" for ::1 at 2021-03-11 16:29:18 -0500
+Processing by Api::V1::AuthController#create as JSON
+  Parameters: {"user"=>{"email"=>"alexb@test.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"alexb@test.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "alexb@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:7:in `create'
+Completed 500 Internal Server Error in 21236ms (ActiveRecord: 5.0ms | Allocations: 41159)
+
+
+  
+SystemExit (exit):
+  
+app/controllers/api/v1/auth_controller.rb:9:in `create'
+Started POST "/api/v1/login" for ::1 at 2021-03-11 16:29:52 -0500
+Processing by Api::V1::AuthController#create as JSON
+  Parameters: {"user"=>{"email"=>"alexb@test.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"alexb@test.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "alexb@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:7:in `create'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.4ms)
+Completed 202 Accepted in 303ms (Views: 15.7ms | ActiveRecord: 21.3ms | Allocations: 19296)
+
+
