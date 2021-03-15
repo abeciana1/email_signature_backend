@@ -36,6 +36,7 @@ class Api::V1::UsersController < ApplicationController
             # binding.pry
             render json: { user: UserSerializer.new(user), jwt: token }, status: :created
         else
+            #! look into custom error messaging
             render json: { error: 'failed to create user' }, status: :not_acceptable
         end
     end
